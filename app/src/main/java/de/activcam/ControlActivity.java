@@ -762,18 +762,6 @@ public class ControlActivity extends Activity {
 
     }
 
-//    @Override
-//    public void onConfigurationChanged(Configuration newConfig){
-//        super.onConfigurationChanged(newConfig);
-//        Configuration config = getResources().getConfiguration();
-//        if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
-//            portrait();
-//        }
-//        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            landscape();
-//        }
-//    }
-
 
     void snapshot(){
         if (command != null) command.cancel(true);
@@ -826,7 +814,6 @@ public class ControlActivity extends Activity {
             webView12.setVisibility(C.video12.isEmpty() ? View.INVISIBLE : View.VISIBLE);
             webView22.setVisibility(C.video22.isEmpty() ? View.INVISIBLE : View.VISIBLE);
 
-
             camera_row2.setVisibility(C.video21.isEmpty() && C.video22.isEmpty() ? View.GONE : View.VISIBLE);
         }
 
@@ -834,7 +821,7 @@ public class ControlActivity extends Activity {
 
     private void portrait() {
 
-        ((LinearLayout) findViewById(R.id.motionpanel)).setVisibility(View.VISIBLE);
+        findViewById(R.id.motionpanel).setVisibility(View.VISIBLE);
 
         if (!C.moreCams || camera>0) {
 
