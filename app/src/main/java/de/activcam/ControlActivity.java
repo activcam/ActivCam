@@ -762,17 +762,17 @@ public class ControlActivity extends Activity {
 
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig){
-        super.onConfigurationChanged(newConfig);
-        Configuration config = getResources().getConfiguration();
-        if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            portrait();
-        }
-        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            landscape();
-        }
-    }
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig){
+//        super.onConfigurationChanged(newConfig);
+//        Configuration config = getResources().getConfiguration();
+//        if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
+//            portrait();
+//        }
+//        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            landscape();
+//        }
+//    }
 
 
     void snapshot(){
@@ -808,27 +808,15 @@ public class ControlActivity extends Activity {
 
     private void landscape() {
 
-        ViewGroup.LayoutParams lp0 = ((LinearLayout) findViewById(R.id.camerapanel)).getLayoutParams();
-        lp0.height = max_webview_height;
-        ((LinearLayout) findViewById(R.id.camerapanel)).setLayoutParams(lp0);
         ((LinearLayout) findViewById(R.id.motionpanel)).setVisibility(View.GONE);
 
         if (!C.moreCams || camera>0) {
-
-            ViewGroup.LayoutParams lp11 = ((WebView) findViewById(R.id.webView11)).getLayoutParams();
-            lp11.height = max_webview_height;
-            lp11.width = max_webview_width;
-            webView11.setLayoutParams(lp11);
 
             webView11.setVisibility(View.VISIBLE);
             webView21.setVisibility(View.GONE);
             webView12.setVisibility(View.GONE);
             webView22.setVisibility(View.GONE);
 
-            ViewGroup.LayoutParams lp1 = ((LinearLayout) findViewById(R.id.camera_row1)).getLayoutParams();
-            lp1.height = max_webview_height;
-            lp1.width = max_webview_width;
-            camera_row1.setLayoutParams(lp1);
             camera_row2.setVisibility(View.GONE);
 
         } else {
@@ -838,35 +826,6 @@ public class ControlActivity extends Activity {
             webView12.setVisibility(C.video12.isEmpty() ? View.INVISIBLE : View.VISIBLE);
             webView22.setVisibility(C.video22.isEmpty() ? View.INVISIBLE : View.VISIBLE);
 
-            ViewGroup.LayoutParams lp11 = ((WebView) findViewById(R.id.webView11)).getLayoutParams();
-            lp11.height = max_webview_height / 2;
-            lp11.width = max_webview_width / 2;
-            webView11.setLayoutParams(lp11);
-
-            ViewGroup.LayoutParams lp21 = ((WebView) findViewById(R.id.webView21)).getLayoutParams();
-            lp21.height = max_webview_height / 2;
-            lp21.width = max_webview_width / 2;
-            webView21.setLayoutParams(lp21);
-
-            ViewGroup.LayoutParams lp12 = ((WebView) findViewById(R.id.webView12)).getLayoutParams();
-            lp12.height = max_webview_height / 2;
-            lp12.width = max_webview_width / 2;
-            webView12.setLayoutParams(lp12);
-
-            ViewGroup.LayoutParams lp22 = ((WebView) findViewById(R.id.webView22)).getLayoutParams();
-            lp22.height = max_webview_height / 2;
-            lp22.width = max_webview_width / 2;
-            webView22.setLayoutParams(lp22);
-
-            ViewGroup.LayoutParams lp1 = ((LinearLayout) findViewById(R.id.camera_row1)).getLayoutParams();
-            lp1.height = max_webview_height / 2;
-            lp1.width = max_webview_width;
-            camera_row1.setLayoutParams(lp1);
-
-            ViewGroup.LayoutParams lp2 = ((LinearLayout) findViewById(R.id.camera_row2)).getLayoutParams();
-            lp2.height = max_webview_height / 2;
-            lp2.width = max_webview_width;
-            camera_row2.setLayoutParams(lp2);
 
             camera_row2.setVisibility(C.video21.isEmpty() && C.video22.isEmpty() ? View.GONE : View.VISIBLE);
         }
@@ -875,33 +834,14 @@ public class ControlActivity extends Activity {
 
     private void portrait() {
 
-        double ratio = 9.0/8.0;
-        h2 = Math.round(max_webview_height * ratio);
-
-        ViewGroup.LayoutParams camerapanel_portrait = ((LinearLayout) findViewById(R.id.camerapanel)).getLayoutParams();
-        camerapanel_portrait.height = (int) h2;
-        ((LinearLayout) findViewById(R.id.camerapanel)).setLayoutParams(camerapanel_portrait);
-
-        ViewGroup.LayoutParams motionpanel_portrait = ((LinearLayout) findViewById(R.id.motionpanel)).getLayoutParams();
-        motionpanel_portrait.height = (int) (max_webview_width - h2);
-        ((LinearLayout) findViewById(R.id.motionpanel)).setLayoutParams(motionpanel_portrait);
         ((LinearLayout) findViewById(R.id.motionpanel)).setVisibility(View.VISIBLE);
 
         if (!C.moreCams || camera>0) {
 
-            ViewGroup.LayoutParams full_portrait = ((WebView) findViewById(R.id.webView11)).getLayoutParams();
-            full_portrait.height = (int) h2;
-            full_portrait.width = max_webview_height;
-            webView11.setLayoutParams(full_portrait);
             webView11.setVisibility(View.VISIBLE);
             webView21.setVisibility(View.GONE);
             webView12.setVisibility(View.GONE);
             webView22.setVisibility(View.GONE);
-
-            ViewGroup.LayoutParams row1_full = ((LinearLayout) findViewById(R.id.camera_row1)).getLayoutParams();
-            row1_full.height = (int) h2;
-            row1_full.width = max_webview_height;
-            camera_row1.setLayoutParams(row1_full);
 
             camera_row2.setVisibility(View.GONE);
 
@@ -912,31 +852,6 @@ public class ControlActivity extends Activity {
             webView12.setVisibility(C.video12.isEmpty() ? View.GONE : View.VISIBLE);
             webView22.setVisibility(C.video22.isEmpty() ? View.GONE : View.VISIBLE);
 
-            ViewGroup.LayoutParams lp11 = ((WebView) findViewById(R.id.webView11)).getLayoutParams();
-            lp11.height = (int) h2 / 2;
-            lp11.width = !C.video11.isEmpty() & C.video12.isEmpty() ? max_webview_height : max_webview_height / 2;
-            webView11.setLayoutParams(lp11);
-
-            ViewGroup.LayoutParams lp21 = ((WebView) findViewById(R.id.webView21)).getLayoutParams();
-            lp21.height = (int) h2 / 2;
-            lp21.width = !C.video21.isEmpty() & C.video22.isEmpty() ? max_webview_height : max_webview_height / 2;
-            webView21.setLayoutParams(lp21);
-
-            ViewGroup.LayoutParams lp12 = ((WebView) findViewById(R.id.webView12)).getLayoutParams();
-            lp12.height = (int) h2 / 2;
-            lp12.width = !C.video12.isEmpty() & C.video11.isEmpty() ? max_webview_height : max_webview_height / 2;
-            webView12.setLayoutParams(lp12);
-
-            ViewGroup.LayoutParams lp22 = ((WebView) findViewById(R.id.webView22)).getLayoutParams();
-            lp22.height = (int) h2 / 2;
-            lp22.width = !C.video22.isEmpty() & C.video21.isEmpty() ? max_webview_height : max_webview_height / 2;
-            webView22.setLayoutParams(lp22);
-
-            ViewGroup.LayoutParams two_rows = ((LinearLayout) findViewById(R.id.camera_row1)).getLayoutParams();
-            two_rows.height = (int) h2 / 2;
-            two_rows.width = max_webview_height;
-            camera_row1.setLayoutParams(two_rows);
-            camera_row2.setLayoutParams(two_rows);
             camera_row2.setVisibility(C.video21.isEmpty() && C.video22.isEmpty() ? View.GONE : View.VISIBLE);
         }
     }
