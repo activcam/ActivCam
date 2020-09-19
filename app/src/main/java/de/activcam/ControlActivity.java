@@ -701,6 +701,11 @@ public class ControlActivity extends Activity {
         if (C.moreCams) {
             ((Button) findViewById(R.id.buttonCAM0)).setVisibility(View.VISIBLE);
             ((Button) findViewById(R.id.buttonCAM1)).setVisibility(View.VISIBLE);
+            ((Button) findViewById(R.id.buttonCAM0)).setEnabled(camera==0 ? false : true);
+            ((Button) findViewById(R.id.buttonCAM1)).setEnabled(camera==1 ? false : true);
+            ((Button) findViewById(R.id.buttonCAM2)).setEnabled(camera==2 ? false : true);
+            ((Button) findViewById(R.id.buttonCAM3)).setEnabled(camera==3 ? false : true);
+            ((Button) findViewById(R.id.buttonCAM4)).setEnabled(camera==4 ? false : true);
             if (C.video11.isEmpty())
                 ((Button) findViewById(R.id.buttonCAM1)).setVisibility(View.GONE);
             else
@@ -724,6 +729,7 @@ public class ControlActivity extends Activity {
             ((Button) findViewById(R.id.buttonCAM3)).setVisibility(View.GONE);
             ((Button) findViewById(R.id.buttonCAM4)).setVisibility(View.GONE);
         }
+
 
         try {
             Configuration config = getResources().getConfiguration();
