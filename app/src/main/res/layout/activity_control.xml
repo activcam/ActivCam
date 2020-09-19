@@ -182,13 +182,16 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <Button
-                android:id="@+id/buttonSpace"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|center_horizontal"
-                android:visibility="invisible"
-                tools:ignore="Suspicious0dp" />
+
+            <ImageButton
+                android:id="@+id/buttonRefresh"
+                android:layout_width="50dp"
+                android:layout_height="36dp"
+                android:layout_margin="12dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:background="@android:color/darker_gray"
+                android:src="@android:drawable/stat_notify_sync"
+                android:visibility="visible" />
 
             <Button
                 android:id="@+id/buttonCAM0"

@@ -376,6 +376,20 @@ public class ControlActivity extends Activity {
              }
          });
 
+        ImageButton buttonRefresh = (ImageButton) findViewById(R.id.buttonRefresh);
+        buttonRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    onResume();
+                    ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
+                    loadUrl(webView11,C.server + ":" + C.video11);
+                } catch (ActivityNotFoundException e) {
+                    txtViewStatus.setText(e.getMessage());
+                }
+            }
+        });
+
         Button buttonCam0 = (Button) findViewById(R.id.buttonCAM0);
         buttonCam0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -797,6 +811,7 @@ public class ControlActivity extends Activity {
     private void landscape() {
 
         ((LinearLayout) findViewById(R.id.motionpanel)).setVisibility(View.GONE);
+        findViewById(R.id.buttonRefresh).setVisibility(View.GONE);
 
         if (!C.moreCams || camera>0) {
 
@@ -822,6 +837,10 @@ public class ControlActivity extends Activity {
     private void portrait() {
 
         findViewById(R.id.motionpanel).setVisibility(View.VISIBLE);
+        if (C.moreCams)
+            findViewById(R.id.buttonRefresh).setVisibility(View.GONE);
+        else
+            findViewById(R.id.buttonRefresh).setVisibility(View.VISIBLE);
 
         if (!C.moreCams || camera>0) {
 
