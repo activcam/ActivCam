@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="settings">تنظیمات</string>
-    <string name="license">مجوز</string>
     <string name="start_detection">تشخیص حرکت را شروع کنید؟</string>
     <string name="more_cams">دوربین های بیشتر</string>
     <string name="one_cam">دوربین تنها</string>
