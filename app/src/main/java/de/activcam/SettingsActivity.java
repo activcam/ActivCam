@@ -62,8 +62,8 @@ public class SettingsActivity extends Activity  {
         videoport3 = (EditText) findViewById(R.id.editTextVideo3Port);
         videoport4 = (EditText) findViewById(R.id.editTextVideo4Port);
         controlport = (EditText) findViewById(R.id.editTextControlPort);
-        auth = (EditText) findViewById(R.id.editTextAuth);
-        auth_md5 = (EditText) findViewById(R.id.editTextAuth_md5);
+        auth = (EditText) findViewById(R.id.editTextAuthWeb);
+        auth_md5 = (EditText) findViewById(R.id.editTextAuthVideo);
         hideEventEnd = (Switch) findViewById(R.id.switchHideEventButtonEnd);
         hideEventStart = (Switch) findViewById(R.id.switchHideEventButtonStart);
 
@@ -132,7 +132,7 @@ public class SettingsActivity extends Activity  {
                 if (C.moreCams) {
                     Command command = new Command(
                             SettingsActivity.this,
-                            (EditText) findViewById(R.id.editTextAuth_md5)
+                            (EditText) findViewById(R.id.editTextAuthVideo)
                     );
                     command.execute(
                             C.server + ":" + C.control + "/"+0+"/config/get?query=stream_authentication",
@@ -252,7 +252,8 @@ public class SettingsActivity extends Activity  {
             ((TextView) findViewById(R.id.textViewVideo3Port)).setVisibility(View.VISIBLE);
             ((EditText) findViewById(R.id.editTextVideo4Port)).setVisibility(View.VISIBLE);
             ((TextView) findViewById(R.id.textViewVideo4Port)).setVisibility(View.VISIBLE);
-            ((TextView) findViewById(R.id.textViewVideo1Port)).setText("Cam:1 port");
+            ((TextView) findViewById(R.id.textViewVideo1Port)).setText("Cam:1 port/uri");
+            ((EditText) findViewById(R.id.editTextVideo1Port)).setHint("8081/1/stream");
             ((Button) findViewById(R.id.buttonMoreCams)).setText(R.string.one_cam);
         } else {
             ((EditText) findViewById(R.id.editTextVideo2Port)).setVisibility(View.GONE);
@@ -261,7 +262,8 @@ public class SettingsActivity extends Activity  {
             ((TextView) findViewById(R.id.textViewVideo3Port)).setVisibility(View.GONE);
             ((EditText) findViewById(R.id.editTextVideo4Port)).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.textViewVideo4Port)).setVisibility(View.GONE);
-            ((TextView) findViewById(R.id.textViewVideo1Port)).setText("Cam:0 port");
+            ((TextView) findViewById(R.id.textViewVideo1Port)).setText("Cam:0 port/uri");
+            ((EditText) findViewById(R.id.editTextVideo1Port)).setHint("8081/0/stream");
             ((Button) findViewById(R.id.buttonMoreCams)).setText(R.string.more_cams);
         }
     }

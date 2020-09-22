@@ -63,7 +63,7 @@
             android:textSize="12dp" />
 
         <EditText
-            android:id="@+id/editTextAuth"
+            android:id="@+id/editTextAuthWeb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -76,7 +76,7 @@
             android:maxLines="1" />
 
         <TextView
-            android:id="@+id/textViewAuth"
+            android:id="@+id/textViewWeb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -85,7 +85,7 @@
             android:textSize="12dp" />
 
         <EditText
-            android:id="@+id/editTextAuth_md5"
+            android:id="@+id/editTextAuthVideo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -98,7 +98,7 @@
             android:maxLines="1" />
 
         <TextView
-            android:id="@+id/textViewAuth_md5"
+            android:id="@+id/textViewAuthVideo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -126,7 +126,7 @@
             android:ems="10"
             android:focusable="true"
             android:gravity="center_vertical|center_horizontal"
-            android:hint="8081/1/stream"
+            android:hint="8081/0/stream"
             android:inputType="textVisiblePassword"
             android:maxLines="1" />
 
@@ -135,14 +135,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Cam:1 port"
+            android:text="Cam:1 port/uri"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="12dp" />
 
         </LinearLayout>
 
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -167,7 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Cam:3 port"
+                android:text="Cam:3 port/uri"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="12dp"
                 android:visibility="gone" />
@@ -176,12 +176,12 @@
 
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -206,7 +206,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Cam:2 port"
+            android:text="Cam:2 port/uri"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="12dp"
             android:visibility="gone" />
@@ -214,7 +214,7 @@
     </LinearLayout>
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -239,7 +239,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Cam:4 port"
+            android:text="Cam:4 port/uri"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="12dp"
             android:visibility="gone" />
