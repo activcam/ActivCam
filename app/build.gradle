@@ -7,8 +7,8 @@ android {
         applicationId "de.avtivcam"
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 188
-        versionName "1.88"
+        versionCode 189
+        versionName "1.89"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

@@ -245,7 +245,15 @@ public class Command extends AsyncTask<String, String, String> {
 
         int responseCode = connection.getResponseCode();
         if(responseCode != HttpURLConnection.HTTP_OK){
-            throw new IOException("HTTP: "+responseCode);
+            // ToDo http status code
+            switch (responseCode)
+            {
+                case 401:   throw new IOException("Unauthorized");
+                case 900:   throw new IOException("Lock the door");
+                case 901:   throw new IOException("Leave the room");
+                case 999:   throw new IOException("Motion detected");
+                default:    throw new IOException("HTTP: "+responseCode);
+            }
         };
 
         InputStream is = connection.getInputStream();
@@ -256,6 +264,7 @@ public class Command extends AsyncTask<String, String, String> {
         while ((numCharsRead = isr.read(charArray)) > 0) {
             sb.append(charArray, 0, numCharsRead);
         }
+        connection.disconnect();
         return sb.toString();
     }
 
