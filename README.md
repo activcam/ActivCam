@@ -37,7 +37,7 @@ Motion currently doesn't include an integrated function for direct alerting when
 ActivCam supports push notifications. Please use the notify dialog and get your messaging id. 
 Configure your server as shown below.
   
-    on_motion_detected curl https://alert.activcam.de/test.php?id=<see notify dialog>
+    on_motion_detected wget https://alert.activcam.de/test.php?id=<see notify dialog>
 
 Please note the [Google privacy policy](https://policies.google.com/privacy) in connection with 
 Firebase Cloud Messaging. This feature is under development. The above url is only for testing.
