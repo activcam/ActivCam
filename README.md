@@ -1,8 +1,7 @@
 # ActivCam for Motion
 
 [Motion](https://motion-project.github.io), a software motion detector, is a free software CCTV software application developed for Linux. 
-[ActivMotion](https://esp8266.activcam.de) is a simple [ESP8266](https://en.wikipedia.org/wiki/ESP8266) based alarm system. ActivCam is an Android app for both, [Motion](https://motion-project.github.io) and [ActivMotion](https://esp8266.activcam.de). 
-
+[ActivMotion](https://esp8266.activcam.de) is a simple [ESP8266](https://en.wikipedia.org/wiki/ESP8266) based alarm system. ActivCam is an Android app for both.
 Get the ActivCam app from the [Google Playstore](https://play.google.com/store/apps/details?id=de.avtivcam).
 
 **made for 16:9 aspect ratio (HD camera and android device)**
