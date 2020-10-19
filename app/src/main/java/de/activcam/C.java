@@ -29,6 +29,7 @@ public class C {
     static int my_req_write = 0;
     static boolean trust_just_now = false;
     static String trusted_cert = "";
+    static String version = "";
 
     static boolean consent_fcm = false;
 

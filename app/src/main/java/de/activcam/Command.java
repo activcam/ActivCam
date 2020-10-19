@@ -59,7 +59,6 @@ public class Command extends AsyncTask<String, String, String> {
     private TextView txtTime;
     private ListView listConfig;
     private Context context;
-    private String version = "";
     private boolean ignore_error = false;
 
     private void trustEveryone() {
@@ -119,7 +118,11 @@ public class Command extends AsyncTask<String, String, String> {
 
     @Override
     protected void onProgressUpdate(String... Progress) {
-        if (txtStatus!=null) txtStatus.setText(Progress[1]);
+        if (txtStatus!=null) {
+            txtStatus.setText(Progress[1]);
+            if (Progress[1].contains("Warning")||Progress[1].contains("Alert"))
+                txtStatus.setTextColor(Color.RED); else txtStatus.setTextColor(Color.BLACK);
+        }
         if (listConfig!=null) {
             String[] s = Progress[1].split("\n");
             ArrayAdapter<String> ad;
@@ -148,16 +151,20 @@ public class Command extends AsyncTask<String, String, String> {
                 first_response = first_response.replaceAll("\n","");
                 publishProgress(null,first_response);
             }
-            if (!isCancelled() && version.equals("")) {
-                //ToDO get more information about motion installation (camera count, ports, ...)
+            if (!isCancelled() && C.version.equals("")) {
                 try {
-                version = readURL(C.server + ":" + C.control+"/",C.auth_web);
-                version = version.split("<p class=\"header-right\">Motion ")[1];
-                version = version.split("</p")[0];
-                version = "Motion "+version;
+                C.version = readURL(C.server + ":" + C.control+"/",C.auth_web);
+                C.version = C.version.split("<p class=\"header-right\">Motion ")[1];
+                C.version = C.version.split("</p")[0];
                 } catch (Exception e) {
-                    version = "";
+                    C.version = "";
                 }
+            }
+
+            if (C.version.equals("AC")) {
+                publishProgress(new SimpleDateFormat("hh:mm:ss").format(new Date()) +
+                        " Motion " + C.version + " -", first_response);
+                Thread.sleep(500);
             }
 
             while (!isCancelled() && Params[1]!=null){
@@ -174,7 +181,7 @@ public class Command extends AsyncTask<String, String, String> {
                 Date dNow = new Date( );
                 SimpleDateFormat ft =
                         new SimpleDateFormat ("hh:mm:ss");
-                publishProgress(ft.format(dNow) + " "+ version + " -",second_response);
+                publishProgress(ft.format(dNow) + " Motion "+ C.version + " -",second_response);
 
                 try {
                     Thread.sleep(1500);
@@ -216,42 +223,45 @@ public class Command extends AsyncTask<String, String, String> {
 
         HttpURLConnection connection = (HttpURLConnection) serverUrl.openConnection();
 
-        String auth_meth = connection.getHeaderField("WWW-Authenticate");
-
-        if (auth_meth==null){
-            connection.disconnect();
-            connection = (HttpURLConnection) serverUrl.openConnection();
+        if (C.version.equals("AC")){
+            connection.setRequestProperty("Authorization", "Basic " + authStringEnc);
         } else {
-            if (auth_meth.startsWith("Basic ")) {
+            String auth_meth = connection.getHeaderField("WWW-Authenticate");
+
+            if (auth_meth==null){
+                connection.disconnect();
                 connection = (HttpURLConnection) serverUrl.openConnection();
-                connection.setRequestProperty("Authorization", "Basic " + authStringEnc);
-            }
-            if (auth_meth.startsWith("Digest ")) {
-                String[] s = C.auth_web.split(":");
-                // https://github.com/al-broco/bare-bones-digest
-                connection = (HttpURLConnection) serverUrl.openConnection();
-                DigestAuthentication auth = DigestAuthentication.fromResponse(connection);
-                // ...with correct credentials
-                auth.username(s[0]).password(s[1]);
-                if (!auth.canRespond()) {
-                    // No digest challenge or a challenge of an unsupported type - do something else or fail
-                    throw new IOException("HTTP: digest challenge");
+            } else {
+                if (auth_meth.startsWith("Basic ")) {
+                    connection = (HttpURLConnection) serverUrl.openConnection();
+                    connection.setRequestProperty("Authorization", "Basic " + authStringEnc);
                 }
-                connection = (HttpURLConnection) serverUrl.openConnection();
-                String rp = auth.getAuthorizationForRequest("GET", connection.getURL().getPath());
-                connection.setRequestProperty(DigestChallengeResponse.HTTP_HEADER_AUTHORIZATION, rp);
+                if (auth_meth.startsWith("Digest ")) {
+                    String[] s = C.auth_web.split(":");
+                    // https://github.com/al-broco/bare-bones-digest
+                    connection = (HttpURLConnection) serverUrl.openConnection();
+                    DigestAuthentication auth = DigestAuthentication.fromResponse(connection);
+                    // ...with correct credentials
+                    auth.username(s[0]).password(s[1]);
+                    if (!auth.canRespond()) {
+                        // No digest challenge or a challenge of an unsupported type - do something else or fail
+                        throw new IOException("HTTP: digest challenge");
+                    }
+                    connection = (HttpURLConnection) serverUrl.openConnection();
+                    String rp = auth.getAuthorizationForRequest("GET", connection.getURL().getPath());
+                    connection.setRequestProperty(DigestChallengeResponse.HTTP_HEADER_AUTHORIZATION, rp);
+                }
             }
         }
 
         int responseCode = connection.getResponseCode();
         if(responseCode != HttpURLConnection.HTTP_OK){
-            // ToDo http status code
             switch (responseCode)
             {
-                case 401:   throw new IOException("Unauthorized");
-                case 900:   throw new IOException("Lock the door");
-                case 901:   throw new IOException("Leave the room");
-                case 999:   throw new IOException("Motion detected");
+                case 401:   return "Warning: Unauthorized";
+                case 900:   return "Warning: Lock the door";
+                case 901:   return "Warning: Leave the room";
+                case 999:   return "Alert: Motion detected";
                 default:    throw new IOException("HTTP: "+responseCode);
             }
         };

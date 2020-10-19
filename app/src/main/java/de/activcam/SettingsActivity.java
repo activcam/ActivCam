@@ -240,6 +240,9 @@ public class SettingsActivity extends Activity  {
         editor.putBoolean("Hide_eventend", C.hide_eventend);
         editor.putBoolean("Hide_eventstart", C.hide_eventstart);
         editor.commit();
+        // possibly different version after configuration,
+        // new parsing required
+        C.version="";
 
         super.onPause();
     }
