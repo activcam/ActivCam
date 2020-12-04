@@ -383,7 +383,8 @@ public class ControlActivity extends Activity {
                 try {
                     onResume();
                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                    loadUrl(webView11,C.server + ":" + C.video11);
+                    if (C.video11.isEmpty()) webView11.loadUrl("file:///android_asset/web_hi_res_512.png");
+                    else loadUrl(webView11,C.video11);
                 } catch (ActivityNotFoundException e) {
                     txtViewStatus.setText(e.getMessage());
                 }
@@ -397,7 +398,7 @@ public class ControlActivity extends Activity {
                 try {
                     camera=0; onResume();
                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                    loadUrl(webView11,C.server + ":" + C.video11);
+                    loadUrl(webView11,C.video11);
                 } catch (ActivityNotFoundException e) {
                     txtViewStatus.setText(e.getMessage());
                 }
@@ -411,7 +412,7 @@ public class ControlActivity extends Activity {
                 try {
                     camera=1; onResume();
                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                    loadUrl(webView11,C.server + ":" + C.video11);
+                    loadUrl(webView11,C.video11);
                 } catch (ActivityNotFoundException e) {
                     txtViewStatus.setText(e.getMessage());
                 }
@@ -426,7 +427,7 @@ public class ControlActivity extends Activity {
                 try {
                     camera=2; onResume();
                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                    loadUrl(webView11,C.server + ":" + C.video21);
+                    loadUrl(webView11,C.video21);
                 } catch (ActivityNotFoundException e) {
                     txtViewStatus.setText(e.getMessage());
                 }
@@ -441,7 +442,7 @@ public class ControlActivity extends Activity {
                 try {
                     camera=3; onResume();
                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                    loadUrl(webView11,C.server + ":" + C.video12);
+                    loadUrl(webView11,C.video12);
                 } catch (ActivityNotFoundException e) {
                     txtViewStatus.setText(e.getMessage());
                 }
@@ -456,7 +457,7 @@ public class ControlActivity extends Activity {
                 try {
                     camera=4; onResume();
                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                    loadUrl(webView11,C.server + ":" + C.video22);
+                    loadUrl(webView11,C.video22);
                 } catch (ActivityNotFoundException e) {
                     txtViewStatus.setText(e.getMessage());
                 }
@@ -518,7 +519,6 @@ public class ControlActivity extends Activity {
                                  try {
                                      camera=1; onResume();
                                      ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                                     // loadUrl(webView11,C.server + ":" + C.video11);
                                  } catch (ActivityNotFoundException e) {
                                      txtViewStatus.setText(e.getMessage());
                                  }
@@ -526,7 +526,6 @@ public class ControlActivity extends Activity {
                                  try {
                                      camera=0; onResume();
                                      ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                                     // loadUrl(webView11,C.server + ":" + C.video11);
                                  } catch (ActivityNotFoundException e) {
                                      txtViewStatus.setText(e.getMessage());
                                  }
@@ -556,7 +555,7 @@ public class ControlActivity extends Activity {
                                 try {
                                     camera=2; onResume();
                                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                                    loadUrl(webView11,C.server + ":" + C.video21);
+                                    loadUrl(webView11,C.video21);
                                 } catch (ActivityNotFoundException e) {
                                     txtViewStatus.setText(e.getMessage());
                                 }
@@ -564,7 +563,7 @@ public class ControlActivity extends Activity {
                                 try {
                                     camera=0; onResume();
                                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                                    loadUrl(webView11,C.server + ":" + C.video11);
+                                    loadUrl(webView11,C.video11);
                                 } catch (ActivityNotFoundException e) {
                                     txtViewStatus.setText(e.getMessage());
                                 }
@@ -595,7 +594,7 @@ public class ControlActivity extends Activity {
                                 try {
                                     camera=3; onResume();
                                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                                    loadUrl(webView11,C.server + ":" + C.video12);
+                                    loadUrl(webView11,C.video12);
                                 } catch (ActivityNotFoundException e) {
                                     txtViewStatus.setText(e.getMessage());
                                 }
@@ -603,7 +602,7 @@ public class ControlActivity extends Activity {
                                 try {
                                     camera=0; onResume();
                                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                                    loadUrl(webView11,C.server + ":" + C.video11);
+                                    loadUrl(webView11,C.video11);
                                 } catch (ActivityNotFoundException e) {
                                     txtViewStatus.setText(e.getMessage());
                                 }
@@ -634,7 +633,7 @@ public class ControlActivity extends Activity {
                                 try {
                                     camera=4; onResume();
                                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                                    loadUrl(webView11,C.server + ":" + C.video22);
+                                    loadUrl(webView11,C.video22);
                                 } catch (ActivityNotFoundException e) {
                                     txtViewStatus.setText(e.getMessage());
                                 }
@@ -642,7 +641,7 @@ public class ControlActivity extends Activity {
                                 try {
                                     camera=0; onResume();
                                     ((TextView) findViewById(R.id.txtAktCamera)).setText("CAM:"+camera);
-                                    loadUrl(webView11,C.server + ":" + C.video11);
+                                    loadUrl(webView11,C.video11);
                                 } catch (ActivityNotFoundException e) {
                                     txtViewStatus.setText(e.getMessage());
                                 }
@@ -740,17 +739,18 @@ public class ControlActivity extends Activity {
                 landscape();
             }
 
+            if (C.video11.isEmpty()) webView11.loadUrl("file:///android_asset/web_hi_res_512.png");
+
             if (C.server.isEmpty()) {
-                webView11.loadUrl("file:///android_asset/web_hi_res_512.png");
                 (findViewById(R.id.cameraConfig)).setVisibility(View.GONE);
             }
             else {
                 (findViewById(R.id.cameraConfig)).setVisibility(View.VISIBLE);
                 if (camera==0) {
-                    if (!C.video11.isEmpty()) loadUrl (webView11,C.server + ":" + C.video11);
-                    if (!C.video21.isEmpty()) loadUrl (webView21,C.server + ":" + C.video21);
-                    if (!C.video12.isEmpty()) loadUrl (webView12,C.server + ":" + C.video12);
-                    if (!C.video22.isEmpty()) loadUrl (webView22,C.server + ":" + C.video22);
+                    if (!C.video11.isEmpty()) loadUrl (webView11,C.video11);
+                    if (!C.video21.isEmpty()) loadUrl (webView21,C.video21);
+                    if (!C.video12.isEmpty()) loadUrl (webView12,C.video12);
+                    if (!C.video22.isEmpty()) loadUrl (webView22,C.video22);
                 }
 
                 if (command != null) command.cancel(true);
@@ -869,9 +869,8 @@ public class ControlActivity extends Activity {
     }
 
     private void loadUrl(WebView webview, String url){
-        final String[] s = C.auth_video.split(":");
         webview.setWebViewClient(new SSLTolerentWebViewClient(this));
-        webview.loadUrl(url);
+        webview.loadUrl(url.contains("//") ? url : C.server + ":" + url);
     }
 
     private String getSSID(){

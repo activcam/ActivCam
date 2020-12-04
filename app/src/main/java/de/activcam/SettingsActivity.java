@@ -29,6 +29,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.StringDef;
+
 import static de.activcam.C.max_webview_width;
 
 
@@ -265,7 +267,7 @@ public class SettingsActivity extends Activity  {
             ((TextView) findViewById(R.id.textViewVideo3Port)).setVisibility(View.GONE);
             ((EditText) findViewById(R.id.editTextVideo4Port)).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.textViewVideo4Port)).setVisibility(View.GONE);
-            ((TextView) findViewById(R.id.textViewVideo1Port)).setText("Cam:0 port/uri");
+            ((TextView) findViewById(R.id.textViewVideo1Port)).setText(R.string.video_stream);
             ((EditText) findViewById(R.id.editTextVideo1Port)).setHint("8081/0/stream");
             ((Button) findViewById(R.id.buttonMoreCams)).setText(R.string.more_cams);
         }

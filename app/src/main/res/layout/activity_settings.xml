@@ -135,7 +135,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Cam:1 port/uri"
+            android:text="@string/video_stream"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="12dp" />
 
